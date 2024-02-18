@@ -2,7 +2,7 @@
   <div class="inner">
     <%# ログインしているときは以下を表示する %>
       <div class="greeting">
-        <%# こんにちは、 %>
+        <%= "こんにちは、" if user_signed_in? %>
         <%= link_to @user_name, root_path, class: :greeting__link %>
       </div>
     <%# // ログインしているときは上記を表示する %>

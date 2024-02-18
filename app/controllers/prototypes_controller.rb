@@ -15,7 +15,28 @@ class PrototypesController < ApplicationController
   end
 
   def show
-  
+    @user_name = current_user.name if user_signed_in?
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def edit
+    @prototype = Prototype.find(params[:id])
+  end
+
+  def update
+    prototype = Prototype.find(params[:id])
+
+    if prototype.update(prototype_params)
+      redirect_to  prototype_path, notice: '更新されました'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    prototype = Prototype.find(params[:id])
+    prototype.destroy
+    redirect_to root_path
   end
 
   private
