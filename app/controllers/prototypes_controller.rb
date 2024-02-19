@@ -1,7 +1,10 @@
 class PrototypesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  
+
   def index
     @user_name = current_user.name if user_signed_in?
-    @prototypes = Prototype.includes(:user).all
+    @prototypes = Prototype.includes(:user)
   end
 
   def new
@@ -17,6 +20,8 @@ class PrototypesController < ApplicationController
   def show
     @user_name = current_user.name if user_signed_in?
     @prototype = Prototype.find(params[:id])
+    @comment = Comment.new
+    @comments = @prototype.comments.includes(:user)
   end
 
   def edit
@@ -27,7 +32,7 @@ class PrototypesController < ApplicationController
     prototype = Prototype.find(params[:id])
 
     if prototype.update(prototype_params)
-      redirect_to  prototype_path, notice: '更新されました'
+      redirect_to  prototype_path
     else
       render :edit
     end
