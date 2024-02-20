@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :comments
   has_many  :prototypes
 
-  validates :name, presence: true
-  #あとで確認するvalidates :email, uniqueness: true
+  validates :name,:profile,:occupation,:position, presence: true
+
 end
