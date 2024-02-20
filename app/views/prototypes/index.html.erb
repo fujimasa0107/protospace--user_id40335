@@ -5,7 +5,7 @@
       <% if user_signed_in? %>
         <% @user = current_user %>
         <% if @user %>
-          <%= "こんにちは、#{link_to @user_name, user_path(@user), class: :greeting__link}".html_safe %>
+          <%= "こんにちは、#{link_to @user_name, user_path(@user), class: :greeting__link}さん".html_safe %>
         <% end %>
       <% else %>
         <%= "こんにちは、ゲストさん" %>
